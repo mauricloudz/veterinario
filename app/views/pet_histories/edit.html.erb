@@ -1,6 +1,10 @@
-<h1>Editing Pet History</h1>
+<div class="mx-auto" style="width: 30vw">
+  <h1 class="text-center mt-5">Editing Pet History</h1>
 
-<%= render 'form', pet_history: @pet_history %>
+  <div class="mt-5"><%= render 'form', pet_history: @pet_history %></div>
 
-<%= link_to 'Show', @pet_history %> |
-<%= link_to 'Back', pet_histories_path %>
+  <div class="text-center">
+    <%= link_to 'Show', client_pet_pet_history_path(@client, @pet, @pet_history), :class => 'btn btn-light form-control' %>
+    <%= link_to 'Back', client_pet_pet_histories_path, :class => 'btn btn-light form-control' %>
+  </div>
+</div>

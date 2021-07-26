@@ -1,10 +1,11 @@
 class PetsController < ApplicationController
+  before_action :get_client
   before_action :set_pet, only: [:show, :edit, :update, :destroy]
 
   # GET /pets
   # GET /pets.json
   def index
-    @pets = Pet.all
+    @pets = @client.pets
   end
 
   # GET /pets/1
@@ -14,21 +15,23 @@ class PetsController < ApplicationController
 
   # GET /pets/new
   def new
-    @pet = Pet.new
+    @pet = @client.pets.build
+    # @clients = Client.pluck :name, :id
   end
 
   # GET /pets/1/edit
   def edit
+    # @clients = Client.pluck :name, :id
   end
 
   # POST /pets
   # POST /pets.json
   def create
-    @pet = Pet.new(pet_params)
+    @pet = @client.pets.build(pet_params)
 
     respond_to do |format|
       if @pet.save
-        format.html { redirect_to @pet, notice: 'Pet was successfully created.' }
+        format.html { redirect_to client_pets_path(@client), notice: 'Pet was successfully created.' }
         format.json { render :show, status: :created, location: @pet }
       else
         format.html { render :new }
@@ -42,7 +45,7 @@ class PetsController < ApplicationController
   def update
     respond_to do |format|
       if @pet.update(pet_params)
-        format.html { redirect_to @pet, notice: 'Pet was successfully updated.' }
+        format.html { redirect_to client_pet_path(@client), notice: 'Pet was successfully updated.' }
         format.json { render :show, status: :ok, location: @pet }
       else
         format.html { render :edit }
@@ -56,7 +59,7 @@ class PetsController < ApplicationController
   def destroy
     @pet.destroy
     respond_to do |format|
-      format.html { redirect_to pets_url, notice: 'Pet was successfully destroyed.' }
+      format.html { redirect_to client_pets_url, notice: 'Pet was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -64,11 +67,15 @@ class PetsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_pet
-      @pet = Pet.find(params[:id])
+      @pet = @client.pets.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pet_params
-      params.require(:pet).permit(:name, :race, :birthdate)
+      params.require(:pet).permit(:name, :breed, :birthdate, :client_id)
+    end
+
+    def get_client
+      @client = Client.find(params[:client_id])
     end
 end

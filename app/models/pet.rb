@@ -1,23 +1,25 @@
 class Pet < ApplicationRecord
+  has_many :pet_histories, dependent: :destroy
+  belongs_to :client
 
-  def history_count
-    #TODO-implement
+  def historyCount
+    self.pet_histories.count    
   end
 
-  def avg_weight
-    #TODO-implement
+  def avgWeight
+    self.pet_histories.average(:weight)
   end
 
-  def avg_height
-    #TODO-implement
+  def avgHeight
+    self.pet_histories.average(:heigth)
   end
 
-  def max_weight
-    #TODO-implement
+  def maxWeight
+    self.pet_histories.pluck(:weight).max
   end
 
-  def max_height
-    #TODO-implement
+  def maxHeight
+    self.pet_histories.pluck(:heigth).max
   end
 
 end

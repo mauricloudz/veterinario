@@ -1,19 +1,22 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Weight:</strong>
-  <%= @pet_history.weight %>
-</p>
 
-<p>
-  <strong>Heigth:</strong>
-  <%= @pet_history.heigth %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @pet_history.description %>
-</p>
-
-<%= link_to 'Edit', edit_pet_history_path(@pet_history) %> |
-<%= link_to 'Back', pet_histories_path %>
+<div class="container" style="width: 90vh">
+  <h1 class="text-center my-5">Pet History Details</h1>
+  <ul class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Weight
+      <span class=""><%= @pet_history.weight %> kg</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Heigth
+      <span class=""><%= @pet_history.heigth %> cm</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      Description
+      <span class=""><%= @pet_history.description %></span>
+    </li>
+  </ul>
+<%= link_to 'Edit', edit_client_pet_pet_history_path(@pet_history), :class => "btn btn-success form-control"%> |
+<%= link_to 'Back', client_pet_pet_histories_path, :class => "btn btn-light form-control"%>
+</div>

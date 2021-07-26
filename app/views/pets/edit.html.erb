@@ -1,6 +1,14 @@
-<h1>Editing Pet</h1>
+<div class="mx-auto" style="width: 30vw;">
 
-<%= render 'form', pet: @pet %>
+    <h1 class="text-center mt-5">Editing Pet</h1>
 
-<%= link_to 'Show', @pet %> |
-<%= link_to 'Back', pets_path %>
+    <div class="mt-5">
+        <%= render 'form', pet: @pet %>
+    </div>
+
+    <div class="text-center">
+        <%= link_to 'Show', client_pet_path(@client, @pet), :class => 'btn btn-success btn-sm' %>
+        <%= link_to 'Back', client_pets_path, :class => 'btn btn-light btn-sm' %>
+    </div>
+
+</div>

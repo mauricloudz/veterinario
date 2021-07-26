@@ -1,5 +1,12 @@
-<h1>New Pet</h1>
+<div class="mx-auto" style="width: 30vw;">
 
-<%= render 'form', pet: @pet %>
+    <h1 class="text-center mt-5">New Pet</h1>
 
-<%= link_to 'Back', pets_path %>
+    <div class="mt-5">
+        <%= render 'form', pet: @pet %>
+    </div>
+
+    <div class="text-center">
+        <%= link_to 'Back', client_pets_path %>
+    </div>
+</div>
